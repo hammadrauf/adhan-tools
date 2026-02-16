@@ -105,6 +105,11 @@ mkdir -p /usr/local/bin
 echo "Copying configuration file..."
 cp config.default.yml /etc/adhan/config.yml
 
+if [[ -n "$SUDO_USER" ]]; then
+  USER_HOME=$(eval echo ~$SUDO_USER)
+  sed -i "s|file: \"/var/log/adhan-daemon.log\"|file: \"$USER_HOME/adhan-daemon.log\"|" /etc/adhan/config.yml
+fi
+
 # Detect sound card
 echo "Detecting sound card..."
 SOUND_CARD=$(aplay -l 2>/dev/null | grep '^card' | head -1 | sed 's/card \([0-9]\+\):.*/\1/')
