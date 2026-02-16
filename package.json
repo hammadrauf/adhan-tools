@@ -1,0 +1,15 @@
+{
+  "name": "adhan-tools",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "adhan-cli": "./bin/adhan-cli",
+    "adhan-daemon": "./bin/adhan-daemon"
+  },
+  "dependencies": {
+    "adhan": "^4.4.0",
+    "yaml": "^2.4.0",
+    "play-sound": "^1.1.3",
+    "node-schedule": "^2.1.1"
+  }
+}

@@ -1,0 +1,9 @@
+[Unit]
+Description=Restart adhan-daemon daily to recalc times
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

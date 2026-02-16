@@ -1,0 +1,17 @@
+location:
+  latitude: 43.8971
+  longitude: -78.8658
+  timezone: America/Toronto
+
+calculation:
+  method: "NorthAmerica"
+  madhab: "Hanafi" # or Shafi, Hanafi
+
+audio:
+  enabled: true
+  fajr: "/usr/share/adhan/fajr.mp3"
+  other: "/usr/share/adhan/adhan.mp3"
+
+logging:
+  file: "/var/log/adhan-daemon.log"
+  level: "info"
