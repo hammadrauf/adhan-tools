@@ -11,7 +11,7 @@ audio:
   enabled: true
   fajr: "/usr/share/adhan/fajr.mp3"
   other: "/usr/share/adhan/adhan.mp3"
-  soundCard: "plughw:0,0"
+  soundCard: "hw:0,0"
 
 logging:
   file: "/var/log/adhan-daemon.log"

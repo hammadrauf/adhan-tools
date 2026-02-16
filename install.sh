@@ -109,14 +109,14 @@ cp config.default.yml /etc/adhan/config.yml
 echo "Detecting sound card..."
 SOUND_CARD=$(aplay -l 2>/dev/null | grep '^card' | head -1 | sed 's/card \([0-9]\+\):.*/\1/')
 if [[ -n "$SOUND_CARD" ]]; then
-  sed -i "s/soundCard: .*/soundCard: \"plughw:$SOUND_CARD,0\"/" /etc/adhan/config.yml
-  echo "Sound card detected: plughw:$SOUND_CARD,0"
+  sed -i "s/soundCard: .*/soundCard: \"hw:$SOUND_CARD,0\"/" /etc/adhan/config.yml
+  echo "Sound card detected: hw:$SOUND_CARD,0"
 else
   # Fallback: check for audio hardware using lspci
   AUDIO_DEVICES=$(lspci -nnk | grep -A3 -i audio)
   AUDIO_COUNT=$(echo "$AUDIO_DEVICES" | grep -c "Audio device")
   if [[ $AUDIO_COUNT -gt 0 ]]; then
-    echo "No ALSA card detected via aplay, but $AUDIO_COUNT audio device(s) found via lspci. Using default plughw:0,0"
+    echo "No ALSA card detected via aplay, but $AUDIO_COUNT audio device(s) found via lspci. Using default hw:0,0"
     echo "Audio devices detected:"
     echo "$AUDIO_DEVICES"
   else
