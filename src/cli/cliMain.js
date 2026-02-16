@@ -1,15 +1,17 @@
 import { loadConfig } from "../config/loadConfig.js";
 import { getPrayerTimes } from "../core/calculateTimes.js";
+import { playAudio } from "../core/player.js";
 
 function printHelp() {
   console.log(`
 Usage: adhan-cli [config-path] [options]
 
 Options:
-  --help       Show this help message
-  --next       Show the next prayer time
-  --tomorrow   Show prayer times for tomorrow
-  --week       Show prayer times for the current week
+  --help            Show this help message
+  --next            Show the next prayer time
+  --tomorrow        Show prayer times for tomorrow
+  --week            Show prayer times for the current week
+  --startup-sound   Play the startup sound (Bismillah.mp3)
 
 If no options are provided, shows today's prayer times.
 Config path defaults to /etc/adhan/config.yml if not specified.
@@ -67,6 +69,9 @@ for (let i = 0; i < args.length; i++) {
       case '--week':
         command = 'week';
         break;
+      case '--startup-sound':
+        command = 'startup-sound';
+        break;
       default:
         console.error(`Unknown option: ${arg}`);
         printHelp();
@@ -103,6 +108,13 @@ if (command === 'next') {
       console.log(`${name}: ${formatTime(time)}`);
     }
   }
+} else if (command === 'startup-sound') {
+  playAudio('/usr/share/adhan/Bismillah.mp3').then(() => {
+    console.log('Startup sound played.');
+  }).catch((err) => {
+    console.error('Error playing startup sound:', err);
+    process.exit(1);
+  });
 } else {
   // Default: today's times
   const times = getPrayerTimes(config);
