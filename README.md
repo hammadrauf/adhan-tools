@@ -12,10 +12,9 @@ Adhan-Tools is a suite of utilities designed to automatically play the Adhan (Is
 - **Multiple notifications**: Visual and audio alerts
 
 ## Basic Upstream Dependency
-This softwre is haevily dependant on [Adhanjs](https://github.com/batoulapps/adhan-js). More details about its parameters, and hence this software config file parameters can be found at [Parameters Guide](https://github.com/batoulapps/adhan-js/blob/master/METHODS.md).
-
-    - [https://github.com/batoulapps/adhan-js](https://github.com/batoulapps/adhan-js)
-    - [https://github.com/batoulapps/adhan-js/blob/master/METHODS.md](https://github.com/batoulapps/adhan-js/blob/master/METHODS.md)
+This softwre is haevily dependant on [Adhanjs](https://github.com/batoulapps/adhan-js). More details about its parameters, and hence this software config file parameters can be found at [Parameters Guide](https://github.com/batoulapps/adhan-js/blob/master/METHODS.md).  
+- [https://github.com/batoulapps/adhan-js](https://github.com/batoulapps/adhan-js)
+- [https://github.com/batoulapps/adhan-js/blob/master/METHODS.md](https://github.com/batoulapps/adhan-js/blob/master/METHODS.md)
 
 ## Usage Examples
 
