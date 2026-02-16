@@ -111,6 +111,10 @@ cp audio/fajr.mp3 /usr/share/adhan/
 cp audio/adhan.mp3 /usr/share/adhan/
 cp audio/Bismillah.mp3 /usr/share/adhan/
 
+# Copy source files
+echo "Copying source files..."
+cp -r src /usr/share/adhan/
+
 # Install CLI and daemon binaries
 echo "Installing binaries..."
 cp bin/adhan-cli /usr/local/bin/

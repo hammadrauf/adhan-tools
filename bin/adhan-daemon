@@ -1,2 +1,4 @@
-#!/usr/bin/env node
-import '../src/daemon/daemonMain.js';
+#!/bin/bash
+
+cd /usr/share/adhan
+node src/daemon/daemonMain.js "$@"
