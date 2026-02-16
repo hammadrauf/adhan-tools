@@ -1,18 +1,23 @@
 location:
-  latitude: 43.8971
-  longitude: -78.8658
+  latitude: 43.873602
+  longitude: -78.90557
   timezone: America/Toronto
 
 calculation:
   method: "NorthAmerica"
   madhab: "Hanafi" # or Shafi, Hanafi
+  # schedule: "0 5 * * *"  # Cron expression: run daily at 5:00 AM (customize as needed)
+  # schedule: "0 0 * * *"  # Cron expression: run daily at midnight (customize as needed)
+  # schedule: "*/2 * * * *"  #run every 2 minutes (for testing purposes, change to desired schedule)
+  schedule: "0 2,14 * * *" # run every 12 hours starting at 2:00 AM (customize as needed)
 
 audio:
   enabled: true
   fajr: "/usr/share/adhan/fajr.mp3"
+  chirping: "/usr/share/adhan/chirping.mp3"
   other: "/usr/share/adhan/adhan.mp3"
   soundCard: "hw:0,0"
 
 logging:
-  file: "/var/log/adhan-daemon.log"
+  logFile: "/var/log/adhan-tools.log"
   level: "info"

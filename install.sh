@@ -28,7 +28,10 @@ if [[ ! -f "audio/Bismillah.mp3" ]]; then
     echo "Downloading Bismillah.mp3..."
     wget -O audio/Bismillah.mp3 "https://www.andromendabay.ddns.net/Bismillah.mp3"
 fi
-
+if [[ ! -f "audio/chirping.mp3" ]]; then
+    echo "Downloading chirping.mp3..."
+    wget -O audio/chirping.mp3 "https://sounddino.com/index.php?r=load&mp3&id=74812&l=2"
+fi
 
 # Check for required files
 if [[ ! -f "config.default.yml" ]]; then
@@ -36,7 +39,7 @@ if [[ ! -f "config.default.yml" ]]; then
     exit 1
 fi
 
-if [[ ! -f "audio/fajr.mp3" || ! -f "audio/adhan.mp3" || ! -f "audio/Bismillah.mp3" ]]; then
+if [[ ! -f "audio/fajr.mp3" || ! -f "audio/adhan.mp3" || ! -f "audio/Bismillah.mp3" || ! -f "audio/chirping.mp3" ]]; then
     echo "Error: Audio files not found in $SCRIPT_DIR/audio/"
     exit 1
 fi
@@ -134,6 +137,7 @@ echo "Copying audio files..."
 cp audio/fajr.mp3 /usr/share/adhan/
 cp audio/adhan.mp3 /usr/share/adhan/
 cp audio/Bismillah.mp3 /usr/share/adhan/
+cp audio/chirping.mp3 /usr/share/adhan/
 
 # Copy source files
 echo "Copying source files..."

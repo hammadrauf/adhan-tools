@@ -3,6 +3,8 @@ Description=Adhan Prayer Time Daemon
 After=network.target
 
 [Service]
+# Changed from default (oneshot) to long-running
+Type=simple
 ExecStart=/usr/local/bin/adhan-daemon /etc/adhan/config.yml
 Restart=always
 User=root
