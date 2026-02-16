@@ -19,12 +19,14 @@ function logger(msg) {
 
 logger("Adhan daemon starting…");
 
-// Play startup sound (unchanged)
-playAudio('/usr/share/adhan/Bismillah.mp3', config.audio.soundCard).then(() => {
-  logger("Startup sound played.");
-}).catch((err) => {
-  logger("Error playing startup sound: " + err);
-});
+// Delay startup sound to allow audio device to initialize
+setTimeout(() => {
+  playAudio('/usr/share/adhan/Bismillah.mp3', config.audio.soundCard).then(() => {
+    logger("Startup sound played.");
+  }).catch((err) => {
+    logger("Error playing startup sound: " + err);
+  });
+}, 3000); // 3 second delay
 
 // Function to calculate and schedule prayers
 function calculateAndSchedule() {
