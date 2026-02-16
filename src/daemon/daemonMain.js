@@ -1,6 +1,7 @@
 import { loadConfig } from "../config/loadConfig.js";
 import { getPrayerTimes } from "../core/calculateTimes.js";
 import { schedulePrayer } from "../core/scheduler.js";
+import { playAudio } from "../core/player.js";
 import fs from "fs";
 
 const configPath = process.argv[2] || "/etc/adhan/config.yml";
@@ -16,6 +17,12 @@ function logger(msg) {
 }
 
 logger("Adhan daemon starting…");
+
+playAudio('/usr/share/adhan/Bismillah.mp3', config.audio.soundCard).then(() => {
+  logger("Startup sound played.");
+}).catch((err) => {
+  logger("Error playing startup sound: " + err);
+});
 
 const times = getPrayerTimes(config);
 

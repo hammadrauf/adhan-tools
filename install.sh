@@ -148,6 +148,10 @@ chmod +x /usr/local/bin/adhan-daemon
 # Install systemd service and timer
 echo "Installing systemd service and timer..."
 cp systemd/adhan-daemon.service /etc/systemd/system/
+if [[ -n "$SUDO_USER" ]]; then
+  sed -i "s/User=root/User=$SUDO_USER/" /etc/systemd/system/adhan-daemon.service
+  sed -i "s/Group=root/Group=$SUDO_USER/" /etc/systemd/system/adhan-daemon.service
+fi
 cp systemd/adhan-daemon.timer /etc/systemd/system/
 
 # Reload systemd daemon
