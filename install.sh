@@ -115,6 +115,10 @@ cp audio/Bismillah.mp3 /usr/share/adhan/
 echo "Copying source files..."
 cp -r src /usr/share/adhan/
 
+# Copy node_modules
+echo "Copying node_modules..."
+cp -r node_modules /usr/share/adhan/
+
 # Install CLI and daemon binaries
 echo "Installing binaries..."
 cp bin/adhan-cli /usr/local/bin/
