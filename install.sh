@@ -163,6 +163,15 @@ echo "Enabling and starting adhan-daemon timer..."
 systemctl enable adhan-daemon.timer
 systemctl start adhan-daemon.timer
 
+# Add user to audio group for ALSA access
+if [[ -n "$SUDO_USER" ]]; then
+  usermod -a -G audio "$SUDO_USER"
+  echo "Added $SUDO_USER to audio group for ALSA access."
+  echo "You may need to log out and log back in for the group change to take effect."
+else
+  echo "Please ensure your user is in the 'audio' group to access sound devices without sudo."
+fi
+
 echo "Installation completed successfully!"
 echo "You can now use 'adhan-cli' command."
 echo "The daemon is running and will play adhan at prayer times."
