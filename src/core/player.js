@@ -1,8 +1,9 @@
 import { exec } from 'child_process';
 
-export function playAudio(path) {
+export function playAudio(path, soundCard = 'default') {
   return new Promise((resolve, reject) => {
-    exec(`mpg123 "${path}"`, (err, stdout, stderr) => {
+    const cmd = soundCard !== 'default' ? `mpg123 -a "${soundCard}" "${path}"` : `mpg123 "${path}"`;
+    exec(cmd, (err, stdout, stderr) => {
       if (err) {
         reject(err);
       } else {

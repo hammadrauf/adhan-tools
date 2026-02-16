@@ -109,7 +109,7 @@ if (command === 'next') {
     }
   }
 } else if (command === 'startup-sound') {
-  playAudio('/usr/share/adhan/Bismillah.mp3').then(() => {
+  playAudio('/usr/share/adhan/Bismillah.mp3', config.audio.soundCard).then(() => {
     console.log('Startup sound played.');
   }).catch((err) => {
     console.error('Error playing startup sound:', err);

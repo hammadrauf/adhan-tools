@@ -23,7 +23,7 @@ for (const [name, time] of Object.entries(times)) {
   const audio =
     name === "fajr" ? config.audio.fajr : config.audio.other;
 
-  schedulePrayer(name, time, audio, logger);
+  schedulePrayer(name, time, audio, config.audio.soundCard, logger);
 }
 
 logger("All prayers scheduled for today.");

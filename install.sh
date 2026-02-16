@@ -57,18 +57,18 @@ echo "Installing Adhan Tools..."
 if command -v apt &> /dev/null; then
     echo "Detected Debian/Ubuntu system"
     apt update
-    apt install -y mpg123 pulseaudio
+    apt install -y mpg123 pulseaudio alsa-utils
 elif command -v yum &> /dev/null; then
     echo "Detected RHEL/CentOS system"
-    yum install -y mpg123 pulseaudio
+    yum install -y mpg123 pulseaudio alsa-utils
 elif command -v dnf &> /dev/null; then
     echo "Detected Fedora system"
-    dnf install -y mpg123 pulseaudio
+    dnf install -y mpg123 pulseaudio alsa-utils
 elif command -v pacman &> /dev/null; then
     echo "Detected Arch Linux system"
-    pacman -Syu --noconfirm mpg123 pulseaudio
+    pacman -Syu --noconfirm mpg123 pulseaudio alsa-utils
 else
-    echo "Unsupported package manager. Please install mpg123 and pulseaudio manually."
+    echo "Unsupported package manager. Please install mpg123, pulseaudio, and alsa-utils manually."
     exit 1
 fi
 
@@ -104,6 +104,25 @@ mkdir -p /usr/local/bin
 # Copy configuration file
 echo "Copying configuration file..."
 cp config.default.yml /etc/adhan/config.yml
+
+# Detect sound card
+echo "Detecting sound card..."
+SOUND_CARD=$(aplay -l 2>/dev/null | grep '^card' | head -1 | sed 's/card \([0-9]\+\):.*/\1/')
+if [[ -n "$SOUND_CARD" ]]; then
+  sed -i "s/soundCard: .*/soundCard: \"plughw:$SOUND_CARD,0\"/" /etc/adhan/config.yml
+  echo "Sound card detected: plughw:$SOUND_CARD,0"
+else
+  # Fallback: check for audio hardware using lspci
+  AUDIO_DEVICES=$(lspci -nnk | grep -A3 -i audio)
+  AUDIO_COUNT=$(echo "$AUDIO_DEVICES" | grep -c "Audio device")
+  if [[ $AUDIO_COUNT -gt 0 ]]; then
+    echo "No ALSA card detected via aplay, but $AUDIO_COUNT audio device(s) found via lspci. Using default plughw:0,0"
+    echo "Audio devices detected:"
+    echo "$AUDIO_DEVICES"
+  else
+    echo "No sound card or audio hardware detected."
+  fi
+fi
 
 # Copy audio files
 echo "Copying audio files..."
