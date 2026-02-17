@@ -19,5 +19,5 @@ audio:
   soundCard: "hw:0,0"
 
 logging:
-  logFile: "/var/log/adhan-tools.log"
+  # logFile: "/var/log/adhan-tools.log"
   level: "info"

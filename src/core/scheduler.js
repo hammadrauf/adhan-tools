@@ -15,10 +15,12 @@ export function schedulePrayer(name, time, audioPath, soundCard, logger) {
       }
     }
   });
-  scheduledJobs.push(job);
+  if (job) {
+    scheduledJobs.push(job);
+  }
 }
 
 export function clearPrayers() {
-  scheduledJobs.forEach(job => job.cancel());
+  scheduledJobs.forEach(job => job && job.cancel());
   scheduledJobs.length = 0;
 }
