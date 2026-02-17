@@ -26,7 +26,7 @@ if [[ ! -f "audio/adhan.mp3" ]]; then
 fi
 if [[ ! -f "audio/Bismillah.mp3" ]]; then
     echo "Downloading Bismillah.mp3..."
-    wget -O audio/Bismillah.mp3 "https://www.andromendabay.ddns.net/Bismillah.mp3"
+    wget -O audio/Bismillah.mp3 "https://www.andromendabay.ddns.net/audio/Bismillah.mp3"
 fi
 if [[ ! -f "audio/chirping.mp3" ]]; then
     echo "Downloading chirping.mp3..."
